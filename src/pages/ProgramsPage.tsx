@@ -9,11 +9,12 @@ import Fuse from "fuse.js";
 import { useState } from "react";
 
 function ProgramsPage() {
+  const [search, setSearch] = useState("");
+
   const fuse = new Fuse(universities, {
     keys: ["name", "country", "degree", "fees", "university"],
     threshold: 0.3,
   });
-  const [search, setSearch] = useState("");
   const results = fuse.search(search);
   const filtered = search ? results.map((result) => result.item) : universities;
 
