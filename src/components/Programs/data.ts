@@ -49,7 +49,7 @@ const universities: University[] = [
     country: "United States",
     degree: "Bachelor of Science",
     specialization: "Computer Science",
-    logo: "California-logo.png",
+    logo: "california-logo.png",
     university: "California.jpg",
     language: "English",
     fees: 10000,
