@@ -39,7 +39,7 @@ function ProgramCard({
 }) {
   const { classes } = useStyles();
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder sx={{ width: "270px" }}>
+    <Card shadow="sm" p="lg" radius="md" withBorder sx={{ width: "33%" }}>
       <Card.Section>
         <Box
           sx={{
