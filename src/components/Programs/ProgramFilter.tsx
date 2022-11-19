@@ -12,6 +12,7 @@ import {
   Button,
 } from "@mantine/core";
 import { countries, specializations } from "./data";
+import { useEffect, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -25,6 +26,7 @@ const useStyles = createStyles((theme) => ({
 
 function ProgramFilter() {
   const { classes } = useStyles();
+  const [checkedValue, setCheckedValue] = useState([]);
 
   return (
     <Paper
@@ -48,7 +50,12 @@ function ProgramFilter() {
           label="Degree Level"
           spacing="xs"
         >
-          <Checkbox value="A Level" label="A Level" color="cyan" />
+          <Checkbox
+            value="A Level"
+            label="A Level"
+            color="cyan"
+            // onChange={handleChange}
+          />
           <Checkbox value="Bachelor" label="Bachelor" color="cyan" />
           <Checkbox value="Diploma" label="Diploma" color="cyan" />
           <Checkbox
@@ -101,16 +108,12 @@ function ProgramFilter() {
           thumbSize={14}
           color="cyan"
           sx={{ width: "100%" }}
-        />{" "}
+        />
         {/* English  Requirements */}
         <Switch
           label="Show only programs don't require English tests"
           color="cyan"
         />
-        {/* Apply Button */}
-        <Button sx={{ alignSelf: "center" }} className={classes.button}>
-          Search
-        </Button>
       </Flex>
     </Paper>
   );
