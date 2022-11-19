@@ -67,6 +67,16 @@ function SignIn() {
       <Button className={classes.button} sx={{ width: "100%" }}>
         Sign In
       </Button>
+      <Flex gap={10}>
+        <Text>Don't have an account?</Text>
+        <Text
+          sx={(theme) => ({
+            color: theme.colors.secondaryColor[0],
+          })}
+        >
+          Sign Up
+        </Text>
+      </Flex>
     </Flex>
   );
 }
