@@ -16,6 +16,7 @@ const useStyles = createStyles((theme) => ({
     background: theme.colors.secondaryColor[0],
     cursor: "pointer",
     width: "100%",
+    height: "3rem",
 
     "&:hover": {
       backgroundColor: theme.colors.secondaryColor[1],
@@ -53,7 +54,7 @@ function SignUp() {
           >
             <AiOutlineArrowLeft />
             <Flex gap={6}>
-              <Text>Not a member?</Text>
+              <Text>A member?</Text>
               <Text
                 sx={(theme) => ({
                   color: theme.colors.secondaryColor[0],
