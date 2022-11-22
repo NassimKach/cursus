@@ -1,5 +1,6 @@
 import { Container, List, Button, Flex, createStyles } from "@mantine/core";
 import AnchorTag from "../Hero/AnchorTag";
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -16,6 +17,10 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const linkStyle = {
+  textDecoration: "none",
+};
+
 function Navbar() {
   const { classes } = useStyles();
 
@@ -30,7 +35,9 @@ function Navbar() {
       sx={{ minHeight: "10vh" }}
     >
       <Container>
-        <img src={"/cursusLogo.png"} alt="logo" />
+        <Link to={"/"}>
+          <img src={"/cursusLogo.png"} alt="logo" />
+        </Link>
       </Container>
       <Container>
         <List sx={{ listStyleType: "none" }}>
@@ -43,16 +50,27 @@ function Navbar() {
             justify={{ sm: "center" }}
           >
             <List.Item>
-              <AnchorTag link="Home" />
+              <Link style={linkStyle} to={"/"}>
+                <AnchorTag link="Home" />
+              </Link>
             </List.Item>
+
             <List.Item>
-              <AnchorTag link="Programs" />
+              <Link style={linkStyle} to={"/programs"}>
+                <AnchorTag link="Programs" />
+              </Link>
             </List.Item>
+
             <List.Item>
-              <AnchorTag link="Pricing" />
+              <Link style={linkStyle} to={"/pricing"}>
+                <AnchorTag link="Pricing" />
+              </Link>
             </List.Item>
+
             <List.Item>
-              <AnchorTag link="Contact" />
+              <Link style={linkStyle} to={"/contact"}>
+                <AnchorTag link="Contact" />
+              </Link>
             </List.Item>
           </Flex>
         </List>
@@ -66,14 +84,18 @@ function Navbar() {
           gap={{ base: "sm", sm: "lg" }}
           justify={{ sm: "center" }}
         >
-          <Button
-            color="teal"
-            variant="subtle"
-            className={classes.memberButton}
-          >
-            Login
-          </Button>
-          <Button className={classes.button}>Become a member</Button>
+          <Link to={"/login"}>
+            <Button
+              color="teal"
+              variant="subtle"
+              className={classes.memberButton}
+            >
+              Login
+            </Button>
+          </Link>
+          <Link to={"/signup"}>
+            <Button className={classes.button}>Become a member</Button>
+          </Link>
         </Flex>
       </Container>
     </Flex>

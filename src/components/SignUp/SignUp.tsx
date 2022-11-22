@@ -10,6 +10,11 @@ import {
   createStyles,
 } from "@mantine/core";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+const linkStyle = {
+  textDecoration: "none",
+};
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -52,16 +57,20 @@ function SignUp() {
             justify={"space-between"}
             sx={{ width: "100%" }}
           >
-            <AiOutlineArrowLeft />
+            <Link style={linkStyle} to={"/"}>
+              <AiOutlineArrowLeft />
+            </Link>
             <Flex gap={6}>
               <Text>A member?</Text>
-              <Text
-                sx={(theme) => ({
-                  color: theme.colors.secondaryColor[0],
-                })}
-              >
-                Sign Up
-              </Text>
+              <Link style={linkStyle} to={"/login"}>
+                <Text
+                  sx={(theme) => ({
+                    color: theme.colors.secondaryColor[0],
+                  })}
+                >
+                  Sign Up
+                </Text>
+              </Link>
             </Flex>
           </Flex>
           <Title sx={{ padding: "1rem 0" }}>Create An Account</Title>
@@ -100,7 +109,8 @@ function SignUp() {
             withAsterisk
             sx={{ width: "100%" }}
           />
-          <Button className={classes.button}>Sign Up</Button>
+
+          <Button className={classes.button}>Sign In</Button>
         </Flex>
       </Flex>
     </Box>

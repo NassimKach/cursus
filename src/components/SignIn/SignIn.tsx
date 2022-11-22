@@ -7,6 +7,7 @@ import {
   Button,
   createStyles,
 } from "@mantine/core";
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -17,6 +18,11 @@ const useStyles = createStyles((theme) => ({
     },
   },
 }));
+
+const linkStyle = {
+  textDecoration: "none",
+  color: "#262626",
+};
 
 function SignIn() {
   const { classes } = useStyles();
@@ -31,9 +37,11 @@ function SignIn() {
       wrap="wrap"
       sx={{ width: "40%", height: "100vh", margin: "auto" }}
     >
-      <Text size={60} weight={700}>
-        Cursus
-      </Text>
+      <Link style={linkStyle} to={"/"}>
+        <Text size={60} weight={700}>
+          Cursus
+        </Text>
+      </Link>
       <Input
         placeholder="Email"
         radius="sm"
@@ -69,13 +77,15 @@ function SignIn() {
       </Button>
       <Flex gap={10}>
         <Text>Don't have an account?</Text>
-        <Text
-          sx={(theme) => ({
-            color: theme.colors.secondaryColor[0],
-          })}
-        >
-          Sign Up
-        </Text>
+        <Link style={linkStyle} to={"/signup"}>
+          <Text
+            sx={(theme) => ({
+              color: theme.colors.secondaryColor[0],
+            })}
+          >
+            Sign Up
+          </Text>
+        </Link>
       </Flex>
     </Flex>
   );

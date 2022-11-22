@@ -4,10 +4,10 @@ function AnchorTag({ link }: { link: string }) {
   return (
     <>
       <Anchor
-        href="#"
         underline={false}
         sx={(theme) => ({
           color: theme.colors.tertiaryColor[0],
+          textDecoration: "none",
         })}
       >
         {link}
