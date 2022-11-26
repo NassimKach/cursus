@@ -32,7 +32,7 @@ function Navbar() {
       direction={{ base: "column", sm: "row" }}
       gap={{ base: "sm", sm: "lg" }}
       justify={{ sm: "center" }}
-      sx={{ minHeight: "10vh" }}
+      sx={{ minHeight: "10vh", borderBottom: "1px solid #E2E8F0" }}
     >
       <Container>
         <Link to={"/"}>

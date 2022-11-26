@@ -4,7 +4,6 @@ import App from "./App";
 import { MantineProvider } from "@mantine/core";
 import theme from "./theme";
 import { BrowserRouter } from "react-router-dom";
-import { NavigationProgress } from "@mantine/nprogress";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

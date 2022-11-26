@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function FreePlanCard() {
+function AdvencedPlanCard() {
   const { classes } = useStyles();
 
   return (
@@ -30,7 +30,7 @@ function FreePlanCard() {
         sx={{ padding: "2rem" }}
       >
         <Text size={26} weight={600}>
-          Free
+          Advenced
         </Text>
         <Text align="center" size={14}>
           Organize across <br /> all apps by hand
@@ -43,7 +43,7 @@ function FreePlanCard() {
             color: theme.colors.secondaryColor[0],
           })}
         >
-          0$
+          400$
         </Text>
         <List
           spacing="xs"
@@ -53,15 +53,9 @@ function FreePlanCard() {
         >
           <List.Item>5 Applys</List.Item>
           <List.Item>Live Support 24/7</List.Item>
-          <List.Item icon={<AiFillCheckCircle size={25} color="BDBDBD" />}>
-            Language courses
-          </List.Item>
-          <List.Item icon={<AiFillCheckCircle size={25} color="BDBDBD" />}>
-            Help with paper work
-          </List.Item>
-          <List.Item icon={<AiFillCheckCircle size={25} color="BDBDBD" />}>
-            Help with housing
-          </List.Item>
+          <List.Item>Language courses</List.Item>
+          <List.Item>Help with paper work</List.Item>
+          <List.Item>Help with housing</List.Item>
         </List>
         <Button className={classes.button}>Try for Free</Button>
       </Flex>
@@ -69,4 +63,4 @@ function FreePlanCard() {
   );
 }
 
-export default FreePlanCard;
+export default AdvencedPlanCard;
