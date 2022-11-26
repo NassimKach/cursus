@@ -7,6 +7,7 @@ import { Flex } from "@mantine/core";
 import { universities } from "../components/Programs/data";
 import Fuse from "fuse.js";
 import { useState } from "react";
+import { NavigationProgress } from "@mantine/nprogress";
 
 function ProgramsPage() {
   const [search, setSearch] = useState("");
@@ -24,6 +25,7 @@ function ProgramsPage() {
 
   return (
     <>
+      <NavigationProgress />
       <Navbar />
       <ProgramsBg />
       <Flex

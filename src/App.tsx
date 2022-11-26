@@ -3,9 +3,22 @@ import ProgramsPage from "./pages/ProgramsPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import PricingPage from "./pages/PricingPage";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import {
+  NavigationProgress,
+  startNavigationProgress,
+  completeNavigationProgress,
+} from "@mantine/nprogress";
+import { useEffect } from "react";
 
 function App() {
+  let location = useLocation();
+
+  useEffect(() => {
+    startNavigationProgress();
+    completeNavigationProgress();
+  }, [location.pathname]);
+
   return (
     <div className="App">
       <Routes>

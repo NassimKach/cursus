@@ -1,7 +1,13 @@
 import SignUp from "../components/SignUp/SignUp";
+import { NavigationProgress } from "@mantine/nprogress";
 
 function SignUpPage() {
-  return <SignUp />;
+  return (
+    <>
+      <NavigationProgress />
+      <SignUp />;
+    </>
+  );
 }
 
 export default SignUpPage;
