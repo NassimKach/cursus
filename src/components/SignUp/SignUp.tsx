@@ -4,13 +4,15 @@ import {
   Text,
   Box,
   Title,
-  Input,
   PasswordInput,
+  TextInput,
   Button,
   createStyles,
 } from "@mantine/core";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+import { useForm, zodResolver } from "@mantine/form";
 
 const linkStyle = {
   textDecoration: "none",
@@ -29,11 +31,41 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const schema = z
+  .object({
+    firstName: z
+      .string()
+      .min(2, { message: "Name should have at least 2 letters" }),
+    lastName: z
+      .string()
+      .min(2, { message: "Name should have at least 2 letters" }),
+    email: z.string().email({ message: "Invalid email" }),
+    password: z
+      .string()
+      .min(6, { message: "Password should have at least 6 letters" }),
+    retypedPassword: z.string(),
+  })
+  .refine((data) => data.password === data.retypedPassword, {
+    message: "Passwords do not match",
+    path: ["retypedPassword"],
+  });
+
 function SignUp() {
+  const form = useForm({
+    validate: zodResolver(schema),
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      retypedPassword: "",
+    },
+  });
+
   const { classes } = useStyles();
 
   return (
-    <Box sx={{ maxWidth: "100vw", maxHeight: "100vh" }}>
+    <Box sx={{ maxHeight: "100vh" }}>
       <Flex>
         <Image
           src="student-bg.jpg"
@@ -44,11 +76,11 @@ function SignUp() {
 
         <Flex
           gap={"1rem"}
-          justify="center"
+          justify="flex-start"
           align="center"
           direction="column"
           wrap="wrap"
-          sx={{ flex: 1, padding: "2rem 6rem", width: "100vw" }}
+          sx={{ flex: 1, padding: "1rem 6rem", width: "100vw" }}
         >
           <Flex
             align="Flex-start"
@@ -73,44 +105,52 @@ function SignUp() {
               </Link>
             </Flex>
           </Flex>
-          <Title sx={{ padding: "1rem 0" }}>Create An Account</Title>
-          <Input
-            placeholder="First Name"
-            radius="sm"
-            size="lg"
-            sx={{ width: "100%" }}
-            required
-          />
-          <Input
-            placeholder="Last Name"
-            radius="sm"
-            size="lg"
-            sx={{ width: "100%" }}
-            required
-          />
-          <Input
-            placeholder="Email"
-            radius="sm"
-            size="lg"
-            sx={{ width: "100%" }}
-            required
-          />
-          <PasswordInput
-            placeholder="Password"
-            size="lg"
-            radius="sm"
-            withAsterisk
-            sx={{ width: "100%" }}
-          />
-          <PasswordInput
-            placeholder="Confirm your Password"
-            size="lg"
-            radius="sm"
-            withAsterisk
-            sx={{ width: "100%" }}
-          />
-
-          <Button className={classes.button}>Sign In</Button>
+          <Title sx={{ padding: ".5rem 0" }}>Create An Account</Title>
+          <Box sx={{ width: "100%" }}>
+            <form onSubmit={form.onSubmit((values) => console.log(values))}>
+              <TextInput
+                placeholder="First Name"
+                radius="sm"
+                size="md"
+                sx={{ width: "100%", marginBottom: "1.2rem" }}
+                {...form.getInputProps("firstName")}
+              />
+              <TextInput
+                placeholder="Last Name"
+                radius="sm"
+                size="md"
+                sx={{ width: "100%", marginBottom: "1.2rem" }}
+                {...form.getInputProps("lastName")}
+              />
+              <TextInput
+                placeholder="Email"
+                withAsterisk
+                radius="sm"
+                size="md"
+                sx={{ width: "100%", marginBottom: "1.2rem" }}
+                {...form.getInputProps("email")}
+              />
+              <PasswordInput
+                placeholder="Password"
+                size="md"
+                radius="sm"
+                withAsterisk
+                sx={{ width: "100%", marginBottom: "1.2rem" }}
+                {...form.getInputProps("password")}
+              />
+              <PasswordInput
+                placeholder="Confirm your Password"
+                size="md"
+                radius="sm"
+                withAsterisk
+                sx={{ width: "100%", marginBottom: "1.2rem" }}
+                {...form.getInputProps("retypedPassword")}
+              />
+              <Button type="submit" className={classes.button}>
+                Sign In
+              </Button>
+            </form>
+          </Box>
         </Flex>
       </Flex>
     </Box>

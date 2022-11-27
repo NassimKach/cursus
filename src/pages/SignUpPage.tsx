@@ -5,7 +5,7 @@ function SignUpPage() {
   return (
     <>
       <NavigationProgress />
-      <SignUp />;
+      <SignUp />
     </>
   );
 }

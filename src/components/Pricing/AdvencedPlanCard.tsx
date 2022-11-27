@@ -4,7 +4,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 const useStyles = createStyles((theme) => ({
   button: {
     background: "transparent",
-    border: "1px solid #4FD1C5",
+    border: `1px solid ${theme.colors.secondaryColor[0]}`,
     color: theme.colors.secondaryColor[0],
     cursor: "pointer",
     width: "100%",
@@ -57,7 +57,7 @@ function AdvencedPlanCard() {
           <List.Item>Help with paper work</List.Item>
           <List.Item>Help with housing</List.Item>
         </List>
-        <Button className={classes.button}>Try for Free</Button>
+        <Button className={classes.button}>Select The Plan</Button>
       </Flex>
     </Paper>
   );

@@ -8,6 +8,7 @@ import {
   createStyles,
 } from "@mantine/core";
 import FeaturesCard from "./FeaturesCard";
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -79,7 +80,9 @@ function Features() {
             alignSelf: "center",
           }}
         >
-          <Button className={classes.button}>Explore our programs</Button>
+          <Link to={"/programs"}>
+            <Button className={classes.button}>Explore our programs</Button>
+          </Link>
         </MediaQuery>
       </Flex>
       <Flex

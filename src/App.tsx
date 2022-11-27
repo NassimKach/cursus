@@ -20,7 +20,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="App">
+    <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/programs" element={<ProgramsPage />} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="/login" element={<SignInPage />} />
         <Route path="/pricing" element={<PricingPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
