@@ -76,7 +76,7 @@ function SignUp() {
 
         <Flex
           gap={"1rem"}
-          justify="flex-start"
+          justify="center"
           align="center"
           direction="column"
           wrap="wrap"
@@ -100,7 +100,7 @@ function SignUp() {
                     color: theme.colors.secondaryColor[0],
                   })}
                 >
-                  Sign Up
+                  Sign In
                 </Text>
               </Link>
             </Flex>
@@ -147,7 +147,7 @@ function SignUp() {
                 {...form.getInputProps("retypedPassword")}
               />
               <Button type="submit" className={classes.button}>
-                Sign In
+                Creat Account
               </Button>
             </form>
           </Box>

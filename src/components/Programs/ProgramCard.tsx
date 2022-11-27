@@ -8,6 +8,7 @@ import {
   Avatar,
   Flex,
   createStyles,
+  Skeleton,
 } from "@mantine/core";
 import { GiPositionMarker } from "react-icons/gi";
 
@@ -82,7 +83,7 @@ function ProgramCard({
           <Text
             weight={400}
             sx={(theme) => ({
-              padding: "0 0.5rem",
+              paddingRight: "0.5rem",
               color: theme.colors.secondaryColor[0],
             })}
           >

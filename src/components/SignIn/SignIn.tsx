@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
 import {
   Flex,
   Text,
-  Input,
+  TextInput,
   PasswordInput,
   Checkbox,
   Button,
   createStyles,
+  Box,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
+import { z } from "zod";
+import { useForm, zodResolver } from "@mantine/form";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -25,8 +27,23 @@ const linkStyle = {
   color: "#262626",
 };
 
+const schema = z.object({
+  email: z.string().email({ message: "Invalid email" }),
+  password: z
+    .string()
+    .min(6, { message: "Password should have at least 6 letters" }),
+});
+
 function SignIn() {
   const { classes } = useStyles();
+
+  const form = useForm({
+    validate: zodResolver(schema),
+    initialValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   return (
     <Flex
@@ -43,51 +60,60 @@ function SignIn() {
           Cursus
         </Text>
       </Link>
-      <Input
-        placeholder="Email"
-        radius="sm"
-        size="lg"
-        sx={{ width: "100%" }}
-        required
-      />
-      <PasswordInput
-        placeholder="Password"
-        size="lg"
-        radius="sm"
-        withAsterisk
-        sx={{ width: "100%" }}
-      />
-      <Flex
-        justify={"space-between"}
-        align="center"
-        direction="row"
-        wrap="wrap"
-        sx={{ width: "100%" }}
-      >
-        <Checkbox label="Remember me" />
-        <Text
-          sx={(theme) => ({
-            color: theme.colors.secondaryColor[0],
-          })}
-        >
-          Forgot Password?
-        </Text>
-      </Flex>
-      <Button className={classes.button} sx={{ width: "100%" }}>
-        Sign In
-      </Button>
-      <Flex gap={10}>
-        <Text>Don't have an account?</Text>
-        <Link style={linkStyle} to={"/signup"}>
-          <Text
-            sx={(theme) => ({
-              color: theme.colors.secondaryColor[0],
-            })}
+      <Box sx={{ width: "100%" }}>
+        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+          <TextInput
+            placeholder="Email"
+            radius="sm"
+            size="lg"
+            sx={{ width: "100%", marginBottom: "1rem" }}
+            {...form.getInputProps("email")}
+          />
+          <PasswordInput
+            placeholder="Password"
+            size="lg"
+            radius="sm"
+            withAsterisk
+            sx={{ width: "100%", marginBottom: "1rem" }}
+            {...form.getInputProps("password")}
+          />
+          <Flex
+            justify={"space-between"}
+            align="center"
+            direction="row"
+            wrap="wrap"
+            sx={{ width: "100%" }}
           >
-            Sign Up
-          </Text>
-        </Link>
-      </Flex>
+            <Checkbox label="Remember me" />
+            <Text
+              sx={(theme) => ({
+                color: theme.colors.secondaryColor[0],
+              })}
+            >
+              Forgot Password?
+            </Text>
+          </Flex>
+          <Button
+            type="submit"
+            className={classes.button}
+            sx={{ width: "100%", margin: "1rem 0" }}
+          >
+            Sign In
+          </Button>
+          <Flex gap={10}>
+            <Text>Don't have an account?</Text>
+            <Link style={linkStyle} to={"/signup"}>
+              <Text
+                sx={(theme) => ({
+                  color: theme.colors.secondaryColor[0],
+                })}
+              >
+                Sign Up
+              </Text>
+            </Link>
+          </Flex>
+        </form>
+      </Box>
     </Flex>
   );
 }
