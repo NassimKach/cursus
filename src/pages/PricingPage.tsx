@@ -7,13 +7,12 @@ function PricingPage() {
   return (
     <>
       <NavigationProgress />
-      <Navbar />
+      <Navbar position="relative" />
       <Flex
         justify="center"
-        align="center"
+        align={"space-between"}
         direction="row"
-        wrap="wrap"
-        sx={{ height: "100%", width: "100%", padding: "2rem" }}
+        sx={{ height: "100%", width: "100%", padding: "1rem 0" }}
       >
         <Pricing />
       </Flex>

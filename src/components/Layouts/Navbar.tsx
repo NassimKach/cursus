@@ -21,7 +21,7 @@ const linkStyle = {
   textDecoration: "none",
 };
 
-function Navbar() {
+function Navbar({ position }: { position: any }) {
   const { classes } = useStyles();
 
   return (
@@ -32,7 +32,16 @@ function Navbar() {
       direction={{ base: "column", sm: "row" }}
       gap={{ base: "sm", sm: "lg" }}
       justify={{ sm: "center" }}
-      sx={{ minHeight: "10vh", borderBottom: "1px solid #E2E8F0" }}
+      sx={{
+        minHeight: "10vh",
+        borderBottom: "1px solid #E2E8F0",
+        width: "100%",
+        position: position,
+        top: 0,
+        left: 0,
+        zIndex: 100,
+        background: "#fff",
+      }}
     >
       <Container>
         <Link to={"/"}>

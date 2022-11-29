@@ -27,6 +27,7 @@ function Testimonial() {
 
         <Box sx={{ width: "90%" }}>
           <Carousel
+            withIndicators
             slideSize="33.33%"
             slideGap="xl"
             loop

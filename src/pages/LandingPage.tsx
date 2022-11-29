@@ -7,12 +7,13 @@ import TestimonialSection from "../components/Testimonial/TestimonialSection";
 import FaqSection from "../components/FAQ/FaqSection";
 import Footer from "../components/Layouts/Footer";
 import { NavigationProgress } from "@mantine/nprogress";
+import ScrollToTop from "../components/Layouts/ScrollToTop";
 
 function Main() {
   return (
     <>
       <NavigationProgress />
-      <Navbar />
+      <Navbar position="fixed" />
       <Hero />
       <Features />
       <Speak />
@@ -20,6 +21,7 @@ function Main() {
       <TestimonialSection />
       <FaqSection />
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

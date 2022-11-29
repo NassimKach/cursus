@@ -1,5 +1,5 @@
 import Lottie from "react-lottie";
-import ErrorPage from "./404-error.json";
+import ErrorPage from "../components/data/404-error.json";
 import { Button, Title, Text, Flex, createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
 
