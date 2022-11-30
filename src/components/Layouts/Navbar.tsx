@@ -1,6 +1,5 @@
 import { Container, List, Button, Flex, createStyles } from "@mantine/core";
-import AnchorTag from "../Hero/AnchorTag";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -17,7 +16,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const activeStyle = {
+  color: "#4FD1C5",
+  textDecoration: "none",
+  fontWeight: "bold",
+};
+
 const linkStyle = {
+  color: "#262626",
   textDecoration: "none",
 };
 
@@ -44,9 +50,9 @@ function Navbar({ position }: { position: any }) {
       }}
     >
       <Container>
-        <Link to={"/"}>
+        <NavLink to={"/"}>
           <img src={"/cursusLogo.png"} alt="logo" />
-        </Link>
+        </NavLink>
       </Container>
       <Container>
         <List sx={{ listStyleType: "none" }}>
@@ -59,27 +65,40 @@ function Navbar({ position }: { position: any }) {
             justify={{ sm: "center" }}
           >
             <List.Item>
-              <Link style={linkStyle} to={"/"}>
-                <AnchorTag link="Home" />
-              </Link>
+              <NavLink
+                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
+                to={"/"}
+              >
+                Home
+              </NavLink>
+              <div className="activeStyle"></div>
             </List.Item>
 
             <List.Item>
-              <Link style={linkStyle} to={"/programs"}>
-                <AnchorTag link="Programs" />
-              </Link>
+              <NavLink
+                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
+                to={"/programs"}
+              >
+                Programs
+              </NavLink>
             </List.Item>
 
             <List.Item>
-              <Link style={linkStyle} to={"/pricing"}>
-                <AnchorTag link="Pricing" />
-              </Link>
+              <NavLink
+                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
+                to={"/pricing"}
+              >
+                Pricing
+              </NavLink>
             </List.Item>
 
             <List.Item>
-              <Link style={linkStyle} to={"/contact"}>
-                <AnchorTag link="Contact" />
-              </Link>
+              <NavLink
+                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
+                to={"/contact"}
+              >
+                Contact
+              </NavLink>
             </List.Item>
           </Flex>
         </List>
@@ -93,7 +112,7 @@ function Navbar({ position }: { position: any }) {
           gap={{ base: "sm", sm: "lg" }}
           justify={{ sm: "center" }}
         >
-          <Link to={"/login"}>
+          <NavLink to={"/login"}>
             <Button
               color="teal"
               variant="subtle"
@@ -101,10 +120,10 @@ function Navbar({ position }: { position: any }) {
             >
               Login
             </Button>
-          </Link>
-          <Link to={"/signup"}>
+          </NavLink>
+          <NavLink to={"/signup"}>
             <Button className={classes.button}>Become a member</Button>
-          </Link>
+          </NavLink>
         </Flex>
       </Container>
     </Flex>

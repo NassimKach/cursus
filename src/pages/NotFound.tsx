@@ -53,7 +53,7 @@ function NotFound() {
           </Button>
         </Link>
       </Flex>
-      <Lottie options={defaultOptions} width={400} />;
+      <Lottie options={defaultOptions} width={400} />
     </Flex>
   );
 }
