@@ -1,4 +1,4 @@
-import { Container, List, Button, Flex, createStyles } from "@mantine/core";
+import { Box, List, Button, Flex, createStyles } from "@mantine/core";
 import { NavLink } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
@@ -31,30 +31,30 @@ function Navbar({ position }: { position: any }) {
   const { classes } = useStyles();
 
   return (
-    <Flex
-      mih={80}
-      align="center"
-      wrap="wrap"
-      direction={{ base: "column", sm: "row" }}
-      gap={{ base: "sm", sm: "lg" }}
-      justify={{ sm: "center" }}
+    <Box
       sx={{
-        minHeight: "10vh",
-        borderBottom: "1px solid #E2E8F0",
-        width: "100%",
         position: position,
         top: 0,
         left: 0,
-        zIndex: 100,
-        background: "#fff",
+        right: 0,
+        zIndex: 1000,
+        borderBottom: "1px solid #E2E8F0",
+        backgroundColor: "#fff",
+        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Container>
+      <Flex
+        mih={60}
+        align="center"
+        wrap="wrap"
+        direction={{ base: "column", sm: "row" }}
+        gap={{ base: "sm", sm: "lg" }}
+        justify={"space-evenly"}
+      >
         <NavLink to={"/"}>
           <img src={"/cursusLogo.png"} alt="logo" />
         </NavLink>
-      </Container>
-      <Container>
+
         <List sx={{ listStyleType: "none" }}>
           <Flex
             mih={50}
@@ -102,8 +102,7 @@ function Navbar({ position }: { position: any }) {
             </List.Item>
           </Flex>
         </List>
-      </Container>
-      <Container>
+
         <Flex
           mih={50}
           align="center"
@@ -125,8 +124,8 @@ function Navbar({ position }: { position: any }) {
             <Button className={classes.button}>Become a member</Button>
           </NavLink>
         </Flex>
-      </Container>
-    </Flex>
+      </Flex>
+    </Box>
   );
 }
 
