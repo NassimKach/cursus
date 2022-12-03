@@ -4,13 +4,13 @@ import {
   Text,
   Badge,
   Button,
-  Group,
   Avatar,
   Flex,
   createStyles,
-  Skeleton,
 } from "@mantine/core";
 import { GiPositionMarker } from "react-icons/gi";
+import slugify from "slugify";
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -23,6 +23,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const linkStyle = {
+  textDecoration: "none",
+  width: "100%",
+};
+
 function ProgramCard({
   name,
   country,
@@ -30,6 +35,7 @@ function ProgramCard({
   fees,
   logo,
   university,
+  url,
 }: {
   name: string;
   country: string;
@@ -37,6 +43,7 @@ function ProgramCard({
   fees: number;
   logo: string;
   university: string;
+  url: any;
 }) {
   const { classes } = useStyles();
   return (
@@ -91,9 +98,11 @@ function ProgramCard({
           </Text>
           <Text>year</Text>
         </Flex>
-        <Button fullWidth radius="md" className={classes.button}>
-          Read More
-        </Button>
+        <Link to={url} style={linkStyle}>
+          <Button fullWidth radius="md" className={classes.button}>
+            Read More
+          </Button>
+        </Link>
       </Flex>
     </Card>
   );

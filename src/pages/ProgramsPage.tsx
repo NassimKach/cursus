@@ -8,6 +8,7 @@ import { universities } from "../components/Programs/data";
 import Fuse from "fuse.js";
 import { useState } from "react";
 import { NavigationProgress } from "@mantine/nprogress";
+import slugify from "slugify";
 
 function ProgramsPage() {
   const [search, setSearch] = useState("");
@@ -26,7 +27,7 @@ function ProgramsPage() {
   return (
     <>
       <NavigationProgress />
-      <Navbar />
+      <Navbar position={"fixed"} />
       <ProgramsBg />
       <Flex
         mih={50}
@@ -57,7 +58,11 @@ function ProgramsPage() {
             wrap="wrap"
           >
             {filtered.map((university, index) => (
-              <ProgramCard {...university} key={index} />
+              <ProgramCard
+                {...university}
+                key={index}
+                url={slugify(university.name, { lower: true })}
+              />
             ))}
           </Flex>
         </Flex>

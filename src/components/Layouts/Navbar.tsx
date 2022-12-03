@@ -1,5 +1,5 @@
 import { Container, List, Button, Flex, createStyles } from "@mantine/core";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   button: {
