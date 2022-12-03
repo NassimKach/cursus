@@ -3,7 +3,7 @@ import ProgramsBg from "../components/ProgramsHeader/ProgramsBg";
 import ProgramFilter from "../components/Programs/ProgramFilter";
 import FilterSearch from "../components/Programs/FilterSearch";
 import ProgramCard from "../components/Programs/ProgramCard";
-import { Flex } from "@mantine/core";
+import { Flex, Grid } from "@mantine/core";
 import { universities } from "../components/Programs/data";
 import Fuse from "fuse.js";
 import { useState } from "react";
@@ -49,22 +49,17 @@ function ProgramsPage() {
           sx={{ flex: 1 }}
         >
           <FilterSearch setVal={handleOnSearch} value={search} />
-          <Flex
-            mih={50}
-            gap="md"
-            justify="flex-start"
-            align="flex-start"
-            direction="row"
-            wrap="wrap"
-          >
+          <Grid>
             {filtered.map((university, index) => (
-              <ProgramCard
-                {...university}
-                key={index}
-                url={slugify(university.name, { lower: true })}
-              />
+              <Grid.Col lg={4} md={6} sm={12}>
+                <ProgramCard
+                  {...university}
+                  key={index}
+                  url={slugify(university.name, { lower: true })}
+                />
+              </Grid.Col>
             ))}
-          </Flex>
+          </Grid>
         </Flex>
       </Flex>
     </>
