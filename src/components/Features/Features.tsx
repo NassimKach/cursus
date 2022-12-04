@@ -95,24 +95,24 @@ function Features() {
       >
         <SimpleGrid cols={2} sx={{ margin: "1rem" }}>
           <FeaturesCard
-            icon="icons/icon1.png"
+            icon="Icons/icon1.png"
             text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam"
             title="Multilingual 
 Content"
           />
           <FeaturesCard
-            icon="icons/icon2.png"
+            icon="Icons/icon2.png"
             text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam"
             title="Friendly"
           />
           <FeaturesCard
-            icon="icons/icon3.png"
+            icon="Icons/icon3.png"
             text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam "
             title="Visa/Docs 
         Assistance"
           />
           <FeaturesCard
-            icon="icons/icon4.png"
+            icon="Icons/icon4.png"
             text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam "
             title="Smooth Process"
           />

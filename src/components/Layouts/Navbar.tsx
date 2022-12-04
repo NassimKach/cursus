@@ -1,5 +1,6 @@
-import { Box, List, Button, Flex, createStyles } from "@mantine/core";
+import { Box, List, Button, Flex, createStyles, Burger } from "@mantine/core";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -14,6 +15,16 @@ const useStyles = createStyles((theme) => ({
     cursor: "pointer",
     color: theme.colors.secondaryColor[0],
   },
+
+  burger: {
+    display: "none",
+  },
+  isClosed: {
+    display: "none",
+  },
+  isOpen: {
+    display: "block",
+  },
 }));
 
 const activeStyle = {
@@ -27,9 +38,19 @@ const linkStyle = {
   textDecoration: "none",
 };
 
+const isOpen = {
+  display: "block",
+};
+
+const isClosed = {
+  display: "none",
+};
+
 function Navbar({ position }: { position: any }) {
   const { classes } = useStyles();
+  const [opened, setOpened] = useState(false);
 
+  console.log(opened);
   return (
     <Box
       sx={{
@@ -47,9 +68,14 @@ function Navbar({ position }: { position: any }) {
         mih={60}
         align="center"
         wrap="wrap"
-        direction={{ base: "column", sm: "row" }}
+        direction={{ lg: "row", sm: "column" }}
         gap={{ base: "sm", sm: "lg" }}
-        justify={"space-evenly"}
+        justify={"space-between"}
+        sx={{
+          margin: "0 auto",
+          padding: "0 20px",
+          width: "90%",
+        }}
       >
         <NavLink to={"/"}>
           <img src={"/cursusLogo.png"} alt="logo" />
@@ -60,7 +86,7 @@ function Navbar({ position }: { position: any }) {
             mih={50}
             align="center"
             wrap="wrap"
-            direction={{ base: "column", sm: "row" }}
+            direction="row"
             gap={{ base: "sm", sm: "lg" }}
             justify={{ sm: "center" }}
           >
@@ -124,6 +150,21 @@ function Navbar({ position }: { position: any }) {
             <Button className={classes.button}>Become a member</Button>
           </NavLink>
         </Flex>
+
+        <Burger
+          opened={opened}
+          onClick={() => setOpened((o) => !o)}
+          className={classes.burger}
+          sx={{
+            margin: 0,
+            padding: 0,
+            position: "fixed",
+            top: "0",
+            right: "20px",
+            zIndex: 1000,
+            transform: "translateY(50%)",
+          }}
+        />
       </Flex>
     </Box>
   );
