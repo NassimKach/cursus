@@ -5,6 +5,7 @@ import SignInPage from "./pages/SignInPage";
 import PricingPage from "./pages/PricingPage";
 import Contact from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import Demo from "./Demo";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
   startNavigationProgress,

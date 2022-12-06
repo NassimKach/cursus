@@ -53,7 +53,14 @@ function SignIn() {
       align="center"
       direction="column"
       wrap="wrap"
-      sx={{ width: "40%", height: "100vh", margin: "auto" }}
+      sx={{
+        width: "40%",
+        height: "100vh",
+        margin: "auto",
+        "@media (max-width: 755px)": {
+          width: "80%",
+        },
+      }}
     >
       <Link style={linkStyle} to={"/"}>
         <Text size={60} weight={700}>

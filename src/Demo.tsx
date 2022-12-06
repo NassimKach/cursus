@@ -82,7 +82,7 @@ const useStyles = createStyles((theme) => ({
     "&::after": {
       content: '""',
       display: "block",
-      backgroundColor: theme.colors.secondaryColor[0],
+      backgroundColor: theme.fn.primaryColor(),
       width: 45,
       height: 2,
       marginTop: theme.spacing.sm,
@@ -90,7 +90,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function StepsSection() {
+export default function FeaturesCards() {
   const { classes, theme } = useStyles();
   const features = data.map((feature) => (
     <Card
@@ -100,11 +100,7 @@ export default function StepsSection() {
       className={classes.card}
       p="xl"
     >
-      <feature.icon
-        size={50}
-        stroke={2}
-        color={theme.colors.secondaryColor[0]}
-      />
+      <feature.icon size={50} stroke={2} color={theme.fn.primaryColor()} />
       <Text size="lg" weight={500} className={classes.cardTitle} mt="md">
         {feature.title}
       </Text>
