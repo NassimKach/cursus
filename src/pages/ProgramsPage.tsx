@@ -27,7 +27,7 @@ function ProgramsPage() {
   return (
     <>
       <NavigationProgress />
-      <Navbar position={"fixed"} />
+      <Navbar position={"sticky"} />
       <ProgramsBg />
       <Flex
         mih={50}

@@ -76,7 +76,9 @@ function Footer() {
           ></iframe> */}
         </FooterFlex>
       </Flex>
-      <Text align="center">Ⓒ Cursus 2022</Text>
+      <Text align="center" sx={{ padding: "0 0 1rem 0" }}>
+        Ⓒ Cursus 2022
+      </Text>
     </Box>
   );
 }

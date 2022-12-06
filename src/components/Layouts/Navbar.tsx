@@ -1,6 +1,18 @@
-import { Box, List, Button, Flex, createStyles, Burger } from "@mantine/core";
+import {
+  createStyles,
+  Header,
+  HoverCard,
+  Group,
+  Button,
+  Divider,
+  Box,
+  Burger,
+  Drawer,
+  Flex,
+  ScrollArea,
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -16,158 +28,181 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.secondaryColor[0],
   },
 
-  burger: {
-    display: "none",
+  link: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    textDecoration: "none",
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    fontWeight: 500,
+    fontSize: theme.fontSizes.sm,
+
+    [theme.fn.smallerThan("sm")]: {
+      height: 42,
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+    },
+
+    ...theme.fn.hover({
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
+    }),
   },
-  isClosed: {
-    display: "none",
+
+  subLink: {
+    width: "100%",
+    padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
+    borderRadius: theme.radius.md,
+
+    ...theme.fn.hover({
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[7]
+          : theme.colors.gray[0],
+    }),
+
+    "&:active": theme.activeStyles,
   },
-  isOpen: {
-    display: "block",
+
+  hiddenMobile: {
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
+    },
+  },
+
+  hiddenDesktop: {
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
   },
 }));
 
-const activeStyle = {
-  color: "#4FD1C5",
-  textDecoration: "none",
-  fontWeight: "bold",
-};
+export default function Demo() {
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false);
+  const { classes, theme } = useStyles();
 
-const linkStyle = {
-  color: "#262626",
-  textDecoration: "none",
-};
-
-const isOpen = {
-  display: "block",
-};
-
-const isClosed = {
-  display: "none",
-};
-
-function Navbar({ position }: { position: any }) {
-  const { classes } = useStyles();
-  const [opened, setOpened] = useState(false);
-
-  console.log(opened);
   return (
     <Box
       sx={{
-        position: position,
+        position: "sticky",
         top: 0,
-        left: 0,
-        right: 0,
         zIndex: 1000,
-        borderBottom: "1px solid #E2E8F0",
-        backgroundColor: "#fff",
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+        boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+        transition: "box-shadow 0.2s ease-in-out",
       }}
     >
-      <Flex
-        mih={60}
-        align="center"
-        wrap="wrap"
-        direction={{ lg: "row", sm: "column" }}
-        gap={{ base: "sm", sm: "lg" }}
-        justify={"space-between"}
-        sx={{
-          margin: "0 auto",
-          padding: "0 20px",
-          width: "90%",
-        }}
-      >
-        <NavLink to={"/"}>
-          <img src={"/cursusLogo.png"} alt="logo" />
-        </NavLink>
-
-        <List sx={{ listStyleType: "none" }}>
-          <Flex
-            mih={50}
-            align="center"
-            wrap="wrap"
-            direction="row"
-            gap={{ base: "sm", sm: "lg" }}
-            justify={{ sm: "center" }}
-          >
-            <List.Item>
-              <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
-                to={"/"}
-              >
-                Home
-              </NavLink>
-              <div className="activeStyle"></div>
-            </List.Item>
-
-            <List.Item>
-              <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
-                to={"/programs"}
-              >
-                Programs
-              </NavLink>
-            </List.Item>
-
-            <List.Item>
-              <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
-                to={"/pricing"}
-              >
-                Pricing
-              </NavLink>
-            </List.Item>
-
-            <List.Item>
-              <NavLink
-                style={({ isActive }) => (isActive ? activeStyle : linkStyle)}
-                to={"/contact"}
-              >
-                Contact
-              </NavLink>
-            </List.Item>
-          </Flex>
-        </List>
-
+      <Header height={"10vh"} px="md">
         <Flex
-          mih={50}
           align="center"
-          wrap="wrap"
-          direction={{ base: "column", sm: "row" }}
-          gap={{ base: "sm", sm: "lg" }}
-          justify={{ sm: "center" }}
+          justify="space-between"
+          sx={{ height: "100%", width: "90%", margin: "0 auto" }}
         >
-          <NavLink to={"/login"}>
-            <Button
-              color="teal"
-              variant="subtle"
-              className={classes.memberButton}
-            >
-              Login
-            </Button>
+          <NavLink to={"/"}>
+            <img src={"/cursusLogo.png"} alt="logo" />
           </NavLink>
-          <NavLink to={"/signup"}>
-            <Button className={classes.button}>Become a member</Button>
-          </NavLink>
-        </Flex>
 
-        <Burger
-          opened={opened}
-          onClick={() => setOpened((o) => !o)}
-          className={classes.burger}
-          sx={{
-            margin: 0,
-            padding: 0,
-            position: "fixed",
-            top: "0",
-            right: "20px",
-            zIndex: 1000,
-            transform: "translateY(50%)",
-          }}
-        />
-      </Flex>
+          <Group
+            sx={{ height: "100%" }}
+            spacing={0}
+            className={classes.hiddenMobile}
+          >
+            <NavLink to={"/"} className={classes.link}>
+              Home
+            </NavLink>
+            <HoverCard
+              width={600}
+              position="bottom"
+              radius="md"
+              shadow="md"
+              withinPortal
+            ></HoverCard>
+            <NavLink to={"/programs"} className={classes.link}>
+              Programs
+            </NavLink>
+            <NavLink to={"/pricing"} className={classes.link}>
+              Pricing
+            </NavLink>
+            <NavLink to={"/contact"} className={classes.link}>
+              Contact
+            </NavLink>
+          </Group>
+
+          <Group className={classes.hiddenMobile}>
+            <NavLink to={"/login"}>
+              <Button
+                color="teal"
+                variant="subtle"
+                className={classes.memberButton}
+              >
+                Login
+              </Button>
+            </NavLink>
+            <NavLink to={"/signup"}>
+              <Button className={classes.button}>Become a member</Button>
+            </NavLink>
+          </Group>
+
+          <Burger
+            opened={drawerOpened}
+            onClick={toggleDrawer}
+            className={classes.hiddenDesktop}
+          />
+        </Flex>
+      </Header>
+
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="Cursus"
+        className={classes.hiddenDesktop}
+        zIndex={1000000}
+      >
+        <ScrollArea sx={{ height: "calc(100vh - 60px)" }} mx="-md">
+          <Divider
+            my="sm"
+            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
+          />
+
+          <NavLink to={"/"} className={classes.link}>
+            Home
+          </NavLink>
+
+          <NavLink to={"/programs"} className={classes.link}>
+            Programs
+          </NavLink>
+          <NavLink to={"/pricing"} className={classes.link}>
+            Pricing
+          </NavLink>
+          <NavLink to={"/contact"} className={classes.link}>
+            Contact
+          </NavLink>
+          <Group position="center" grow pb="xl" px="md">
+            <NavLink to={"/login"}>
+              <Button
+                color="teal"
+                variant="subtle"
+                className={classes.memberButton}
+                sx={{ width: "100%" }}
+              >
+                Login
+              </Button>
+            </NavLink>
+            <NavLink to={"/signup"}>
+              <Button className={classes.button} sx={{ width: "100%" }}>
+                Become a member
+              </Button>
+            </NavLink>
+          </Group>
+        </ScrollArea>
+      </Drawer>
     </Box>
   );
 }
-
-export default Navbar;

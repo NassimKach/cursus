@@ -40,7 +40,7 @@ function Hero() {
           direction="column"
           wrap="wrap"
         >
-          <Center style={{ minHeight: "100vh" }}>
+          <Center style={{ minHeight: "90vh" }}>
             <Flex
               mih={50}
               gap="md"
