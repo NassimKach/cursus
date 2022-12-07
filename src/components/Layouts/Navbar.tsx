@@ -135,8 +135,6 @@ export default function Navbar() {
   const { classes, theme } = useStyles();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
-  // let activeClassName = "underline";
-
   return (
     <Box
       sx={{

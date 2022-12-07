@@ -7,8 +7,9 @@ import {
   Button,
   createStyles,
   Box,
+  Title,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { z } from "zod";
 import { useForm, zodResolver } from "@mantine/form";
 
@@ -19,6 +20,12 @@ const useStyles = createStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.colors.secondaryColor[1],
     },
+  },
+
+  logo: {
+    fontSize: "4rem",
+    textDecoration: "none",
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
   },
 }));
 
@@ -62,11 +69,11 @@ function SignIn() {
         },
       }}
     >
-      <Link style={linkStyle} to={"/"}>
-        <Text size={60} weight={700}>
+      <Title>
+        <NavLink to={"/"} className={classes.logo}>
           Cursus
-        </Text>
-      </Link>
+        </NavLink>
+      </Title>
       <Box sx={{ width: "100%" }}>
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
           <TextInput
