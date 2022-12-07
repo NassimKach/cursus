@@ -15,7 +15,6 @@ function FaqSection() {
         sx={{ margin: "2rem 0" }}
         styles={{
           item: {
-            border: "1px solid #ededed",
             boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.06)",
           },
 

@@ -12,7 +12,7 @@ import {
   Button,
 } from "@mantine/core";
 import { countries, specializations } from "./data";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -25,9 +25,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function ProgramFilter() {
-  const { classes } = useStyles();
-  const [checkedValue, setCheckedValue] = useState([]);
-
   return (
     <Paper
       shadow="sm"

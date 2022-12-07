@@ -39,7 +39,7 @@ function SubscribeInput() {
       sx={{
         width: "90%",
         margin: "10rem auto",
-        border: "1px solid #eaeaea",
+        border: "0.2px solid #eaeaea",
         position: "absolute",
         transform: "translateY(-150%) translateX(5%)",
       }}

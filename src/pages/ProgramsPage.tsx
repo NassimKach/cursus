@@ -27,7 +27,7 @@ function ProgramsPage() {
   return (
     <>
       <NavigationProgress />
-      <Navbar position={"sticky"} />
+      <Navbar />
       <ProgramsBg />
       <Flex
         mih={50}
@@ -49,7 +49,7 @@ function ProgramsPage() {
           sx={{ flex: 1 }}
         >
           <FilterSearch setVal={handleOnSearch} value={search} />
-          <Grid>
+          <Grid sx={{ width: "100%" }}>
             {filtered.map((university, index) => (
               <Grid.Col lg={4} md={6} sm={12}>
                 <ProgramCard

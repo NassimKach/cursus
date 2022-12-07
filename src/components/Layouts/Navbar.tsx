@@ -89,6 +89,44 @@ const useStyles = createStyles((theme) => ({
     textDecoration: "none",
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
   },
+
+  activeStyle: {
+    color: theme.colors.secondaryColor[0],
+    textDecoration: "none",
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    paddingLeft: theme.spacing.md,
+    paddingRight: theme.spacing.md,
+    fontWeight: 500,
+    fontSize: theme.fontSizes.sm,
+
+    [theme.fn.smallerThan("sm")]: {
+      height: 42,
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+    },
+
+    ...theme.fn.hover({
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
+    }),
+    "&::after": {
+      content: '""',
+      display: "block",
+      backgroundColor: theme.colors.secondaryColor[0],
+      width: "50%",
+      height: 2,
+      marginTop: theme.spacing.sm,
+      position: "absolute",
+      bottom: "25%",
+      left: "25%",
+    },
+  },
 }));
 
 export default function Demo() {
@@ -96,6 +134,8 @@ export default function Demo() {
     useDisclosure(false);
   const { classes, theme } = useStyles();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
+  // let activeClassName = "underline";
 
   return (
     <Box
@@ -124,7 +164,12 @@ export default function Demo() {
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <NavLink to={"/"} className={classes.link}>
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive ? classes.activeStyle : classes.link
+              }
+            >
               Home
             </NavLink>
             <HoverCard
@@ -134,13 +179,28 @@ export default function Demo() {
               shadow="md"
               withinPortal
             ></HoverCard>
-            <NavLink to={"/programs"} className={classes.link}>
+            <NavLink
+              to={"/programs"}
+              className={({ isActive }) =>
+                isActive ? classes.activeStyle : classes.link
+              }
+            >
               Programs
             </NavLink>
-            <NavLink to={"/pricing"} className={classes.link}>
+            <NavLink
+              to={"/pricing"}
+              className={({ isActive }) =>
+                isActive ? classes.activeStyle : classes.link
+              }
+            >
               Pricing
             </NavLink>
-            <NavLink to={"/contact"} className={classes.link}>
+            <NavLink
+              to={"/contact"}
+              className={({ isActive }) =>
+                isActive ? classes.activeStyle : classes.link
+              }
+            >
               Contact
             </NavLink>
           </Group>

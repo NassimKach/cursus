@@ -9,7 +9,6 @@ import {
   createStyles,
 } from "@mantine/core";
 import { GiPositionMarker } from "react-icons/gi";
-import slugify from "slugify";
 import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
@@ -47,7 +46,7 @@ function ProgramCard({
 }) {
   const { classes } = useStyles();
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder sx={{ flex: "1 0 250px" }}>
+    <Card shadow="sm" p="lg" radius="md" withBorder sx={{ width: "100%" }}>
       <Card.Section>
         <Box
           sx={{
@@ -94,7 +93,7 @@ function ProgramCard({
               color: theme.colors.secondaryColor[0],
             })}
           >
-            {fees} $
+            $ {fees}
           </Text>
           <Text>year</Text>
         </Flex>
