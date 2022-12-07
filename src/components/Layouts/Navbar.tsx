@@ -129,7 +129,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Demo() {
+export default function Navbar() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const { classes, theme } = useStyles();
