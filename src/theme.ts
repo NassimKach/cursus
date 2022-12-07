@@ -2,7 +2,7 @@ import { MantineThemeOverride } from "@mantine/core";
 
 let theme: MantineThemeOverride = {
   fontFamily: "Poppins, sans serif",
-  colorScheme: "light",
+
   colors: {
     primaryColor: ["#FAFAFA"],
     secondaryColor: ["#4FD1C5", "#4CC2B8", "#c9ece9"],

@@ -6,6 +6,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import FooterFlex from "../Footer/FooterFlex";
 import SubscribeInput from "../Subscribe/SubscribeInput";
 
+
 function Footer() {
   return (
     <Box
@@ -24,7 +25,7 @@ function Footer() {
         direction="row"
         sx={{
           width: "90%",
-          margin: "auto",
+          margin: "0 auto",
           padding: "10rem 0 2rem 0",
           flexWrap: "wrap",
         }}

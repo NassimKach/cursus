@@ -11,7 +11,13 @@ import {
   startNavigationProgress,
   completeNavigationProgress,
 } from "@mantine/nprogress";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from "@mantine/core";
+import theme from "./theme";
 
 function App() {
   let location = useLocation();
@@ -21,17 +27,32 @@ function App() {
     completeNavigationProgress();
   }, [location.pathname]);
 
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<SignInPage />} />
-        <Route path="/pricing" element={<PricingPage />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          theme={{ ...theme, colorScheme }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/programs" element={<ProgramsPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<SignInPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </>
   );
 }

@@ -48,15 +48,7 @@ function Features() {
             textAlign: "center",
           }}
         >
-          <Title
-            align="left"
-            order={1}
-            size={30}
-            sx={(theme) => ({
-              color: theme.colors.textColor[0],
-            })}
-            weight={800}
-          >
+          <Title align="left" order={1} size={30} weight={800}>
             It's more than work. <br />
             It's a way of working together.
           </Title>
@@ -68,7 +60,7 @@ function Features() {
             textAlign: "center",
           }}
         >
-          <Text color="#000" weight={300} size="lg">
+          <Text weight={300} size="lg">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt
             aliquam quas reprehenderit officiis assumenda mollitia tempore
             provident accusamus? Minima modi voluptas vitae a ex! Eaque,

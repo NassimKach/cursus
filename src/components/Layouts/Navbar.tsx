@@ -2,7 +2,6 @@ import {
   createStyles,
   Header,
   HoverCard,
-  Group,
   Button,
   Divider,
   Box,
@@ -10,9 +9,14 @@ import {
   Drawer,
   Flex,
   ScrollArea,
+  useMantineColorScheme,
+  ActionIcon,
+  Group,
+  Title,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { NavLink } from "react-router-dom";
+import { IconSun, IconMoonStars } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -80,12 +84,18 @@ const useStyles = createStyles((theme) => ({
       display: "none",
     },
   },
+
+  navLink: {
+    textDecoration: "none",
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+  },
 }));
 
 export default function Demo() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const { classes, theme } = useStyles();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
     <Box
@@ -103,9 +113,11 @@ export default function Demo() {
           justify="space-between"
           sx={{ height: "100%", width: "90%", margin: "0 auto" }}
         >
-          <NavLink to={"/"}>
-            <img src={"/cursusLogo.png"} alt="logo" />
-          </NavLink>
+          <Title>
+            <NavLink to={"/"} className={classes.navLink}>
+              Cursus
+            </NavLink>
+          </Title>
 
           <Group
             sx={{ height: "100%" }}
@@ -146,6 +158,26 @@ export default function Demo() {
             <NavLink to={"/signup"}>
               <Button className={classes.button}>Become a member</Button>
             </NavLink>
+            <ActionIcon
+              onClick={() => toggleColorScheme()}
+              size="lg"
+              sx={(theme) => ({
+                backgroundColor:
+                  theme.colorScheme === "dark"
+                    ? theme.colors.dark[6]
+                    : theme.colors.gray[0],
+                color:
+                  theme.colorScheme === "dark"
+                    ? theme.colors.yellow[4]
+                    : theme.colors.blue[6],
+              })}
+            >
+              {colorScheme === "dark" ? (
+                <IconSun size={18} />
+              ) : (
+                <IconMoonStars size={18} />
+              )}
+            </ActionIcon>
           </Group>
 
           <Burger
