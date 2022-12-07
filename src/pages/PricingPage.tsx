@@ -7,7 +7,7 @@ function PricingPage() {
   return (
     <>
       <NavigationProgress />
-      <Navbar position="sticky" />
+      <Navbar />
       <Flex
         justify="center"
         align={"space-between"}

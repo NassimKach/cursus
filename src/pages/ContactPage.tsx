@@ -5,7 +5,7 @@ import Footer from "../components/Layouts/Footer";
 function ContactPage() {
   return (
     <>
-      <Navbar position={"fixed"} />
+      <Navbar/>
       <Contact />
       {/* <Footer /> */}
     </>

@@ -13,7 +13,7 @@ function Main() {
   return (
     <>
       <NavigationProgress />
-      <Navbar position="sticky" />
+      <Navbar />
       <Hero />
       <Features />
       <Speak />
