@@ -55,7 +55,7 @@ function ProgramsPage() {
                 <ProgramCard
                   {...university}
                   key={index}
-                  url={slugify(university.name, { lower: true })}
+                  url={`/programs/${slugify(university.name, { lower: true })}`}
                 />
               </Grid.Col>
             ))}

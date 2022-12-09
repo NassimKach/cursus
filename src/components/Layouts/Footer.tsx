@@ -6,8 +6,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import FooterFlex from "../Footer/FooterFlex";
 import SubscribeInput from "../Subscribe/SubscribeInput";
 
-
-function Footer() {
+function Footer({ display }: { display: string }) {
   return (
     <Box
       sx={(theme) => ({
@@ -16,7 +15,7 @@ function Footer() {
         color: theme.colors.textColor[1],
       })}
     >
-      <SubscribeInput />
+      <SubscribeInput display={display} />
       <Flex
         mih={50}
         gap="xl"

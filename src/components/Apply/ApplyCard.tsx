@@ -1,4 +1,3 @@
-import Navbar from "./components/Layouts/Navbar";
 import {
   Text,
   Flex,
@@ -19,18 +18,22 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function Demo() {
+function ApplyCard() {
   const { classes } = useStyles();
 
   return (
     <>
-      <Navbar />
       <Card
         shadow="sm"
         p="lg"
         radius="sm"
-        withBorder
-        sx={{ maxWidth: "350px", position: "absolute" }}
+        sx={{
+          minWidth: "20vw",
+
+          position: "absolute",
+          top: "20%",
+          right: "5%",
+        }}
       >
         <Card.Section>
           <Image
@@ -80,4 +83,4 @@ function Demo() {
   );
 }
 
-export default Demo;
+export default ApplyCard;

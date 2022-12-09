@@ -9,6 +9,7 @@ let theme: MantineThemeOverride = {
     tertiaryColor: ["#1A202C"],
     textColor: ["#262626", "rgba(255, 255, 255, 0.56)"],
     errorColor: ["#D14F57"],
+    whiteColor: ["#ffffff"],
   },
 };
 

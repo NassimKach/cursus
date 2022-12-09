@@ -5,7 +5,7 @@ import SignInPage from "./pages/SignInPage";
 import PricingPage from "./pages/PricingPage";
 import Contact from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import Demo from "./Demo";
+import ApplyPage from "./pages/ApplyPage";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
   startNavigationProgress,
@@ -49,6 +49,7 @@ function App() {
             <Route path="/login" element={<SignInPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/programs/:id" element={<ApplyPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </MantineProvider>

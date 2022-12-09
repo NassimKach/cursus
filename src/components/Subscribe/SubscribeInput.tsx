@@ -25,7 +25,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function SubscribeInput() {
+function SubscribeInput({ display }: { display: string }) {
   const { classes } = useStyles();
   //check if the email is valid
   const [email, setEmail] = useState("");
@@ -42,6 +42,7 @@ function SubscribeInput() {
         border: "0.2px solid #eaeaea",
         position: "absolute",
         transform: "translateY(-150%) translateX(5%)",
+        display: display,
       }}
     >
       <Flex

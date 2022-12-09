@@ -30,7 +30,7 @@ const specializations: string[] = [
   "Other",
 ];
 
-interface University {
+export interface University {
   name: string;
   country: string;
   degree: string;
