@@ -20,7 +20,7 @@ function Main() {
       <StepsSection />
       <TestimonialSection />
       <FaqSection />
-      <Footer />
+      <Footer display="border-box" />
       <ScrollToTop />
     </>
   );

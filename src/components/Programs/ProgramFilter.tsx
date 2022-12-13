@@ -6,25 +6,19 @@ import {
   MultiSelect,
   Select,
   RangeSlider,
-  createStyles,
   Text,
   Switch,
-  Button,
 } from "@mantine/core";
 import { countries, specializations } from "./data";
-import { useState } from "react";
-
-const useStyles = createStyles((theme) => ({
-  button: {
-    background: theme.colors.secondaryColor[0],
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: theme.colors.secondaryColor[1],
-    },
-  },
-}));
+import {  useEffect, useState } from "react";
 
 function ProgramFilter() {
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (e: any) => {
+    setChecked(!checked);
+  };
+
   return (
     <Paper
       shadow="sm"
@@ -51,7 +45,8 @@ function ProgramFilter() {
             value="A Level"
             label="A Level"
             color="cyan"
-            // onChange={handleChange}
+            checked={checked}
+            onChange={handleChange}
           />
           <Checkbox value="Bachelor" label="Bachelor" color="cyan" />
           <Checkbox value="Diploma" label="Diploma" color="cyan" />
