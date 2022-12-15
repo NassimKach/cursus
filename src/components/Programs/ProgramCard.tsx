@@ -9,7 +9,11 @@ import {
   createStyles,
 } from "@mantine/core";
 import { GiPositionMarker } from "react-icons/gi";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useToggle } from "@mantine/hooks";
+import { useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from "../redux/favoriteSystem";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -45,6 +49,20 @@ function ProgramCard({
   url: any;
 }) {
   const { classes } = useStyles();
+  const dispatch = useDispatch();
+  const addFavoriteHandler = (id: string) => {
+    dispatch(addFavorite(id));
+  };
+  const [value, toggle] = useToggle(["Outline", "Fill"]);
+
+  const handlefav = () => {
+    if (value === "Outline") {
+      addFavoriteHandler(name);
+    } else {
+      dispatch(removeFavorite(name));
+    }
+  };
+
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder sx={{ width: "100%" }}>
       <Card.Section>
@@ -79,7 +97,34 @@ function ProgramCard({
         wrap="wrap"
         sx={{ padding: ".5rem 0" }}
       >
-        <Badge variant="light">{degree}</Badge>
+        <Flex
+          gap=".5rem"
+          justify={"space-between"}
+          align="center"
+          direction="row"
+          wrap="wrap"
+          sx={{ width: "100%" }}
+        >
+          <Badge variant="light">{degree}</Badge>
+          <Box onClick={handlefav}>
+            {value === "Outline" ? (
+              <AiOutlineStar
+                color="#4FD1C5"
+                size={20}
+                cursor="pointer"
+                onClick={() => toggle("Fill")}
+              />
+            ) : (
+              <AiFillStar
+                color="#FFD700"
+                size={20}
+                cursor="pointer"
+                onClick={() => toggle("Outline")}
+              />
+            )}
+          </Box>
+        </Flex>
+
         <Flex>
           <GiPositionMarker color="#4FD1C5" />
           <Text size={12}>{country}</Text>

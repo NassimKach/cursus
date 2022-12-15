@@ -13,10 +13,21 @@ import {
   ActionIcon,
   Group,
   Title,
+  Menu,
+  Image,
+  Text,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { NavLink } from "react-router-dom";
-import { IconSun, IconMoonStars } from "@tabler/icons";
+import { IconSun, IconMoonStars, IconPinned, IconTrash } from "@tabler/icons";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/Store";
+import {
+  ReactElement,
+  JSXElementConstructor,
+  ReactFragment,
+  ReactPortal,
+} from "react";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -134,6 +145,9 @@ export default function Navbar() {
     useDisclosure(false);
   const { classes, theme } = useStyles();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { favoriteList }: { favoriteList: any } = useSelector(
+    (state: RootState) => state.list
+  );
 
   return (
     <Box
@@ -149,7 +163,7 @@ export default function Navbar() {
         <Flex
           align="center"
           justify="space-between"
-          sx={{ height: "100%", width: "90%", margin: "0 auto" }}
+          sx={{ height: "100%", width: "85%", margin: "0 auto" }}
         >
           <Title>
             <NavLink to={"/"} className={classes.navLink}>
@@ -236,6 +250,44 @@ export default function Navbar() {
                 <IconMoonStars size={18} />
               )}
             </ActionIcon>
+            <Menu shadow="md" width={200}>
+              <Menu.Target>
+                <ActionIcon>
+                  <IconPinned />
+                </ActionIcon>
+              </Menu.Target>
+
+              <Menu.Dropdown>
+                <Menu.Label>Favorites programs</Menu.Label>
+                {favoriteList.map((item: any) => {
+                  return (
+                    <Menu.Item>
+                      <Flex
+                        direction="row"
+                        align="center"
+                        justify={"space-between"}
+                      >
+                        <div
+                          style={{
+                            width: "30px",
+                          }}
+                        >
+                          <Image
+                            radius="md"
+                            src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+                            alt="Random unsplash image"
+                          />
+                        </div>
+                        <Text>{item}</Text>
+                        <ActionIcon>
+                          <IconTrash />
+                        </ActionIcon>
+                      </Flex>
+                    </Menu.Item>
+                  );
+                })}
+              </Menu.Dropdown>
+            </Menu>
           </Group>
 
           <Burger
