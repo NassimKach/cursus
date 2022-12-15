@@ -16,18 +16,17 @@ import {
   Menu,
   Image,
   Text,
+  Avatar,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IconSun, IconMoonStars, IconPinned, IconTrash } from "@tabler/icons";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/Store";
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-} from "react";
+import { universities } from "../Programs/data";
+import slugify from "slugify";
+import { useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from "../redux/favoriteSystem";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -148,6 +147,7 @@ export default function Navbar() {
   const { favoriteList }: { favoriteList: any } = useSelector(
     (state: RootState) => state.list
   );
+  const dispatch = useDispatch();
 
   return (
     <Box
@@ -250,7 +250,7 @@ export default function Navbar() {
                 <IconMoonStars size={18} />
               )}
             </ActionIcon>
-            <Menu shadow="md" width={200}>
+            <Menu shadow="md" width={300}>
               <Menu.Target>
                 <ActionIcon>
                   <IconPinned />
@@ -260,30 +260,42 @@ export default function Navbar() {
               <Menu.Dropdown>
                 <Menu.Label>Favorites programs</Menu.Label>
                 {favoriteList.map((item: any) => {
+                  function removeFromFavoriteList(item: any): any {
+                    throw new Error("Function not implemented.");
+                  }
+
                   return (
-                    <Menu.Item>
-                      <Flex
-                        direction="row"
-                        align="center"
-                        justify={"space-between"}
-                      >
-                        <div
-                          style={{
-                            width: "30px",
-                          }}
+                    <Flex align="center" justify="space-between">
+                      <Menu.Item>
+                        <Link
+                          className={classes.navLink}
+                          to={`/programs/${slugify(item, { lower: true })}`}
                         >
-                          <Image
-                            radius="md"
-                            src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-                            alt="Random unsplash image"
-                          />
-                        </div>
-                        <Text>{item}</Text>
-                        <ActionIcon>
-                          <IconTrash />
-                        </ActionIcon>
-                      </Flex>
-                    </Menu.Item>
+                          <Flex direction="row" align="center" gap={"xl"}>
+                            <div
+                              style={{
+                                width: "30px",
+                              }}
+                            >
+                              <Avatar
+                                radius="xl"
+                                src={
+                                  universities.find(
+                                    (university) => university.name === item
+                                  )?.university
+                                }
+                              />
+                            </div>
+                            <Text>{item}</Text>
+                          </Flex>
+                        </Link>
+                      </Menu.Item>
+                      <ActionIcon
+                        onClick={() => dispatch(removeFavorite(item))}
+                      >
+                        <IconTrash />
+                      </ActionIcon>
+                    </Flex>
                   );
                 })}
               </Menu.Dropdown>
