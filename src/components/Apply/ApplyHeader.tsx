@@ -1,13 +1,12 @@
 import { Text, Box, Flex, SimpleGrid, Avatar } from "@mantine/core";
 import ApplyCard from "./ApplyCard";
 
-function ApplyHeader() {
+function ApplyHeader({ name, img, logo }: { name: any; img: any; logo: any }) {
   return (
     <>
       <Box
         sx={(theme) => ({
-          background:
-            "linear-gradient(0deg, rgba(26, 32, 44, 0.6), rgba(26, 32, 44, 0.6)), url(/university-bg.jpg)",
+          background: `linear-gradient(0deg, rgba(26, 32, 44, 0.6), rgba(26, 32, 44, 0.6)), url(/${img})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -42,11 +41,11 @@ function ApplyHeader() {
             </Flex>
           </SimpleGrid>
           <Flex align={"center"} justify={"center"} gap="sm">
-            <Avatar src={"/paris-logo.jpg"} radius="xl" />
-            <Text weight={500}>Univirsity of lile</Text>
+            <Avatar src={`/${logo}`} radius="xl" />
+            <Text weight={500}>{name}</Text>
           </Flex>
         </Flex>
-        <ApplyCard />
+        <ApplyCard img={img} />
       </Box>
     </>
   );
